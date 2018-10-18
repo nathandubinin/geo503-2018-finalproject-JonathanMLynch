@@ -54,10 +54,6 @@ We are going to use the `occ()` function to download _occurrence_ records for th
 
 Show tables, plots, etc. and describe them.
 
-```{r}
-hist(d$latitude)
-```
-
 # Conclusions
 
 What have you learned?  Are there any broader implications?
