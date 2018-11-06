@@ -22,8 +22,8 @@ Plan for this project:
 5. This places a polygon of area that needs to be evacuated
 
 ```{r}
+#install.packages("leaflet")
 library(leaflet)
-
 map <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
   addMarkers(lng=-78.798, lat=42.900) %>%
