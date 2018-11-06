@@ -328,17 +328,13 @@ div.tocify {
 <div id="materials-and-methods" class="section level1">
 <h1>Materials and methods</h1>
 <p>Narrative and most code will go here. Describe what you are doing and show how to do it (with code).</p>
-<p>You can do bullets like this:</p>
-<ul>
-<li>The first most important thing</li>
-<li>The second most important thing</li>
-<li>The third most important thing</li>
-</ul>
-<p>You can do numbers like this:</p>
+<p>Plan for this project:</p>
 <ol style="list-style-type: decimal">
-<li>The first most important thing</li>
-<li>The second most important thing</li>
-<li>The third most important thing</li>
+<li>Create a map of Erie County</li>
+<li>Add the Hazardous Materials spreadsheet</li>
+<li>Add the ability to select a location on the map</li>
+<li>After selecting a location, choose hazardous material</li>
+<li>This places a polygon of area that needs to be evacuated</li>
 </ol>
 <pre class="r"><code>library(leaflet)
 
@@ -347,8 +343,8 @@ map &lt;- leaflet() %&gt;%
   addMarkers(lng=-78.798, lat=42.900) %&gt;%
   fitBounds(-79.1, 42.5, -78.5, 43.1)
 map  # Print the map</code></pre>
-<div id="htmlwidget-a3536826e8b718291f6a" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a3536826e8b718291f6a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[42.9,-78.798,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.9,42.9],"lng":[-78.798,-78.798]},"fitBounds":[42.5,-79.1,43.1,-78.5,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-622aea0c15592c713ee0" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-622aea0c15592c713ee0">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[42.9,-78.798,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.9,42.9],"lng":[-78.798,-78.798]},"fitBounds":[42.5,-79.1,43.1,-78.5,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
