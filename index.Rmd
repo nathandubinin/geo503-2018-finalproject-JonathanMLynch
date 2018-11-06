@@ -1,6 +1,6 @@
 ---
 title: "Final Project"
-author: Jonathan Lynch
+author: "Jonathan Lynch"
 subtitle: This is a test.
 ---
 
@@ -13,41 +13,24 @@ Something something Hazardous Materials something something.
 
 Narrative and most code will go here.  Describe what you are doing and show how to do it (with code).
 
-You can do bullets like this:
+Plan for this project:
 
-* The first most important thing
-* The second most important thing
-* The third most important thing
+1. Create a map of Erie County
+2. Add the Hazardous Materials spreadsheet
+3. Add the ability to select a location on the map
+4. After selecting a location, choose hazardous material
+5. This places a polygon of area that needs to be evacuated
 
-You can do numbers like this:
-
-1. The first most important thing
-2. The second most important thing
-3. The third most important thing
-
-See [http://rmarkdown.rstudio.com/](http://rmarkdown.rstudio.com/) for all the amazing things you can do.
-
-
-Here's my first code chunk.
 ```{r}
-1+2
+library(leaflet)
+
+map <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-78.798, lat=42.900) %>%
+  fitBounds(-79.1, 42.5, -78.5, 43.1)
+map  # Print the map
 ```
 
-Load any required packages in a code chunk (you may need to install some packages):
-
-```{r, message=F, warning=F}
-library(dplyr)
-library(ggplot2)
-library(maps)
-library(spocc)
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
-```
-
-
-We are going to use the `occ()` function to download _occurrence_ records for the American robin (_Turdus migratorius_) from the [Global Biodiversity Information Facility](gbif.org).
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Turdus-migratorius-002.jpg" alt="alt text" width="200">
-<small><small><small>Licensed under CC BY-SA 3.0 via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Turdus-migratorius-002.jpg#/media/File:Turdus-migratorius-002.jpg)</small></small></small>
 
 
 # Results
