@@ -19,23 +19,43 @@ Plan for this project:
 2. Add the Hazardous Materials spreadsheet
 3. Add the ability to select a location on the map
 4. After selecting a location, choose hazardous material
-5. This places a polygon of area that needs to be evacuated
+5. This places a buffer of area that needs to be evacuated
 
 ```{r}
-#install.packages("leaflet")
-library(leaflet)
-map <- leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=-78.798, lat=42.900) %>%
-  fitBounds(-79.1, 42.5, -78.5, 43.1)
-map  # Print the map
-```
+#Emergency Response Guidebook Spreadsheet
+hazmat <- "https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/docs/English_TIHWR_Table_ERG2016.xlsx"
 
+#set the file path where it'll download to
+file_path <- "data/EmergencyResponseGuide"
+
+#download from the URL to the filepath specified
+download.file(hazmat, file_path)
+
+#set up geocode to get latlon for location of spill
+geocode("#whatever people enter in box", output = "latlon", source = "dsk")
+
+#select hazardous material that spilled
+head(hazmat)
+
+#put buffer around geocoded location from what hazmat spreadsheet states
+```
 
 
 # Results
 
 Show tables, plots, etc. and describe them.
+```{r}
+#install.packages("leaflet")
+library(leaflet)
+map <- leaflet() %>%
+  #Add default OpenStreetMap map tiles
+  addTiles() %>%
+  addMarkers(lng=-78.798, lat=42.900) %>%
+  fitBounds(-79.1, 42.5, -78.5, 43.1)
+#Print the map
+map
+```
+
 
 # Conclusions
 
