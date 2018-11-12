@@ -1,11 +1,11 @@
 ---
 title: "Final Project"
 author: "Jonathan Lynch"
-subtitle: This is a test.
+subtitle: First Draft
 ---
 
 # Introduction
-Something something Hazardous Materials something something.  
+Under the Pipeline and Hazardous Materials Safety Administration (PHMSA), the United States Department of Transportation releases an Emergency Response Guidebook to educate first responders. This guidebook informs people how to respond in the event of a hazardous material spill. Depending on the material and the size of the spill, the reader is informed of how far to evacuate the surrounding area and how far downwind of the spill should be evacuated. The purpose of my project is to take that data that can be found online and create a website where the user will be able to enter a location that will be geocoded onto the map and then the size of the spill and material can be selected. Then the code will pull the relevant information from the spreadsheet and project a buffer at the geocoded location onto the map. Thereby visually informing the user the area that needs to be evacuated.  
 
 > I know words.  I have the best words.  ~ Donald Trump
 
@@ -29,7 +29,7 @@ hazmat <- "https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/docs/English_TIHW
 file_path <- "data/EmergencyResponseGuide"
 
 #download from the URL to the filepath specified
-download.file(hazmat, file_path)
+download.file(hazmat)
 
 #set up geocode to get latlon for location of spill
 geocode("#whatever people enter in box", output = "latlon", source = "dsk")
