@@ -332,35 +332,33 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Create a map of Erie County</li>
 <li>Add the Hazardous Materials spreadsheet</li>
-<li>Add the ability to select a location on the map</li>
+<li>Add the ability to have a location geocoded on the map</li>
 <li>After selecting a location, choose hazardous material</li>
-<li>This places a buffer of area that needs to be evacuated</li>
+<li>This places a buffer around location that needs to be evacuated</li>
 </ol>
-<blockquote>
-<p>The code below is a work in progress and as such is set to not run.</p>
-</blockquote>
-<pre class="r"><code>#Emergency Response Guidebook Spreadsheet
-hazmat &lt;- &quot;https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/docs/English_TIHWR_Table_ERG2016.xlsx&quot;
-
-#set the file path where it&#39;ll download to
-file_path &lt;- &quot;data/EmergencyResponseGuide&quot;
-
-#download from the URL to the filepath specified
-download.file(hazmat)
-
-#set up geocode to get latlon for location of spill
-geocode(&quot;#whatever people enter in box&quot;, output = &quot;latlon&quot;, source = &quot;dsk&quot;)
-
-#select hazardous material that spilled
-head(hazmat)
-
-#put buffer around geocoded location from what hazmat spreadsheet states</code></pre>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>Show tables, plots, etc. and describe them.</p>
+<p>For the requirement for a figure to be implemented in the first draft, a histogram was created of the evacuation area by feet that is needed for large chemical spills.</p>
+<pre class="r"><code>#Where Emergency Response Guidebook data is stored
+hazmat &lt;- &quot;data/English_TIHWR_Table_ERG2016.xlsx&quot;
+
+#clean up and re-name excel file for first draft purposes
+LargeSpill &lt;- read_excel(hazmat, skip = 3) %&gt;%
+  as_tibble() %&gt;%
+  mutate(Feet = parse_number(`(Feet)__1`))
+
+#create histogram for first draft
+LargeHist &lt;- ggplot(LargeSpill, aes(Feet)) +
+  geom_histogram(color=&quot;orangered1&quot;, fill=&quot;white&quot;) +
+  theme_economist() +
+  labs(title=&quot;Histogram for Evacuation Area of Large Spills&quot;, x=&quot;Distance by feet&quot;, y=&quot;Count&quot;)
+
+#display histogram
+LargeHist</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <blockquote>
-<p>The code below currently only loads up the interactive map.</p>
+<p>The code below currently only loads up the interactive map that is not yet fully implemented.</p>
 </blockquote>
 <pre class="r"><code>#install.packages(&quot;leaflet&quot;)
 library(leaflet)
@@ -371,8 +369,8 @@ map &lt;- leaflet() %&gt;%
   fitBounds(-79.1, 42.5, -78.5, 43.1)
 #Print the map
 map</code></pre>
-<div id="htmlwidget-d40352883f369603df5d" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d40352883f369603df5d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[42.9,-78.798,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.9,42.9],"lng":[-78.798,-78.798]},"fitBounds":[42.5,-79.1,43.1,-78.5,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2e58761bf80b2255e181" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2e58761bf80b2255e181">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[42.9,-78.798,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.9,42.9],"lng":[-78.798,-78.798]},"fitBounds":[42.5,-79.1,43.1,-78.5,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>

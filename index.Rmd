@@ -17,26 +17,26 @@ Plan for this project:
 
 1. Create a map of Erie County
 2. Add the Hazardous Materials spreadsheet
-3. Add the ability to select a location on the map
+3. Add the ability to have a location geocoded on the map
 4. After selecting a location, choose hazardous material
-5. This places a buffer of area that needs to be evacuated
+5. This places a buffer around location that needs to be evacuated
 
-> The code below is a work in progress and as such is set to not run.
-```{r eval = FALSE}
-#Emergency Response Guidebook Spreadsheet
+
+```{r eval=FALSE, echo=FALSE}
+#The code below is a work in progress and as such is hidden and set to not run
+
+#Emergency Response Guidebook Spreadsheet to download
 hazmat <- "https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/docs/English_TIHWR_Table_ERG2016.xlsx"
 
-#set the file path where it'll download to
-file_path <- "data/EmergencyResponseGuide"
+#Where Emergency Response Guidebook data is stored
+hazmat <- "data/English_TIHWR_Table_ERG2016.xlsx"
 
 #download from the URL to the filepath specified
-download.file(hazmat)
 
 #set up geocode to get latlon for location of spill
 geocode("#whatever people enter in box", output = "latlon", source = "dsk")
 
 #select hazardous material that spilled
-head(hazmat)
 
 #put buffer around geocoded location from what hazmat spreadsheet states
 ```
@@ -44,9 +44,39 @@ head(hazmat)
 
 # Results
 
-Show tables, plots, etc. and describe them.
+For the requirement for a figure to be implemented in the first draft, a histogram was created of the evacuation area by feet that is needed for large chemical spills.
 
-> The code below currently only loads up the interactive map.
+```{r include=FALSE}
+#install.packages("ggplot2")
+#install.packages("ggthemes")
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(ggthemes)
+```
+
+```{r message=FALSE, warning=FALSE}
+#Where Emergency Response Guidebook data is stored
+hazmat <- "data/English_TIHWR_Table_ERG2016.xlsx"
+
+#clean up and re-name excel file for first draft purposes
+LargeSpill <- read_excel(hazmat, skip = 3) %>%
+  as_tibble() %>%
+  mutate(Feet = parse_number(`(Feet)__1`))
+
+#create histogram for first draft
+LargeHist <- ggplot(LargeSpill, aes(Feet)) +
+  geom_histogram(color="orangered1", fill="white") +
+  theme_economist() +
+  labs(title="Histogram for Evacuation Area of Large Spills", x="Distance by feet", y="Count")
+
+#display histogram
+LargeHist
+```
+
+> The code below currently only loads up the interactive map that is not yet fully implemented.
+
 ```{r}
 #install.packages("leaflet")
 library(leaflet)
