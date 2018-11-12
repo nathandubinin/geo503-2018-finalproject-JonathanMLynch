@@ -21,7 +21,8 @@ Plan for this project:
 4. After selecting a location, choose hazardous material
 5. This places a buffer of area that needs to be evacuated
 
-```{r}
+> The code below is a work in progress and as such is set to not run.
+```{r eval = FALSE}
 #Emergency Response Guidebook Spreadsheet
 hazmat <- "https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/docs/English_TIHWR_Table_ERG2016.xlsx"
 
@@ -44,6 +45,8 @@ head(hazmat)
 # Results
 
 Show tables, plots, etc. and describe them.
+
+> The code below currently only loads up the interactive map.
 ```{r}
 #install.packages("leaflet")
 library(leaflet)
